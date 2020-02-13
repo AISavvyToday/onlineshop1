@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+
+<script>
+{% block jquery %}
+
+	$(".shipping-label").click(function(){
+		$('label').removeClass('shipping-label-selected');
+		$(this).addClass('shipping-label-selected');
+	});
+
+	$(".billing-label").click(function(){
+		$('label').removeClass('billing-label-selected');
+		$(this).addClass('billing-label-selected');
+	});
+
+ 	Stripe.setPublishableKey('{{ stripe_pub }}');
+
+ 	jQuery(function($){
+ 		$('#payment-form').submit(function(event){
+ 			var $form = $(this);
+
+ 			$form.find('button').prop('disabled', true);
+ 			Stripe.card.createToken($form, stripeResponseHandler);
+ 			return false;
+ 		});
+ 	});
+ 	function stripeResponseHandler(status, response) {
+ 		var $form = $('#payment-form');
+ 		if (response.error){
+ 			$('#card_errors_div').removeClass('hidden');
+ 			$form.find('.payment-errors').text(response.error.message);
+ 			$form.find('button').prop('disabled', false);
+ 		} else {
+ 			$('#card_errors_div').addClass('hidden');
+ 			var token = response.id; 
+ 			$form.append($('<input type"hidden" name"stripeToken"/>'));
+ 			$form.get(0).submit();
+ 		}
+ 	};
+
+$('#addShippingAddress').click(function(e){
+	e.preventDefault();
+	$('#shippingAddressForm').fadeToggle();
+
+});
+
+	{% if not current_addresses %}
+		$('#shippingAddressForm').fadeToggle();
+	{% endif %}
+
+{% endblock %}
+</script>
+<style>
+
+{% block styles%}
+
+.shipping-label{
+	font-size: 16px;
+	font-weight: normal;
+	padding: 4px 25px;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+}
+.shipping-label input[type=radio]{
+	display: none;
+}
+
+.shipping-label:hover {
+	font-size: 16px;
+	font-weight: normal;
+	background-color: #428bca;
+	color: white;
+	cursor: pointer;
+
+}
+.shipping-label-selected {
+	font-size: 16px;
+	font-weight: normal;
+	background-color: #428bca;
+	color: white;
+	cursor: pointer;
+}
+.billing-label{
+	font-size: 16px;
+	font-weight: normal;
+	padding: 4px 25px;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+}
+.billing-label input[type=radio]{
+	display: none;
+}
+
+.billing-label:hover {
+	font-size: 16px;
+	font-weight: normal;
+	background-color: #428bca;
+	color: white;
+	cursor: pointer;
+
+}
+.billing-label-selected {
+	font-size: 16px;
+	font-weight: normal;
+	background-color: #428bca;
+	color: white;
+	cursor: pointer;
+}
+
+@media(min-width: 1200px){
+	.total{ position: fixed;
+	 }
+}
+
+{% endblock %}
+</style>
+
+{% block content %}
+
+<div class="col-sm-7 pull-right">
+	<div class="total">
+	<h3>Current total (VAT inc): {{ order.get_final_amount }}</h3>
+<!-- 	<a href="#">Finalize checkout</a> -->
+</div>
+</div>
+
+<div class="col-sm-9 pull-left">
+
+
+<div class="col-sm-6 pull-right" id="shippingAddressForm" style="display:none;"> 
+	<h3>Add new Shipping Address</h3>
+	<form method="POST" action="{% url 'ajax-add-user-address' %}?next=checkout">{% csrf_token %}
+		{{ address_form.as_p }}
+	<input type="submit" class="btn btn-default" value="Add address"/>
+	</form>
+</div>
+
+
+
+
+<form method="POST" action="" id="payment-form">{% csrf_token %}
+{% if current_addresses %}
+	
+<div class="col-sm-12">
+		<h3>Shipping Addresses</h3>
+			{% for address in current_addresses %}
+				
+				{% if request.user.userdefaultaddress.shipping.id == address.id %}
+					<label class="shipping-label shipping-label-selected">
+						<input type="radio" name="Shipping_address", value="{{ address.id }}" checked="checked" /> {{ address.get_address }} <br/> 
+
+						{% else %}
+						<label class="shipping-label">
+						<input type="radio" name="Shipping_address", value="{{ address.id }}"/> {{ address.get_address }}
+				{% endif %}
+					</label> <br/>
+						 
+			{% endfor %}
+					</br>
+<a href="{% url 'add-user-address' %}" id="addShippingAddress"> Add new address</a>
+		
+</div>
+{% endif %}
+
+	  {% if billing_addresses %}
+	  <div class="col-sm-12">
+		<h3>Billing Addresses</h3>
+			
+
+		{% for address in billing_addresses %}
+		 
+				{% if request.user.userdefaultaddress.billing.id == address.id %}
+				<label class="billing-label billing-label-selected">
+					<input type="radio" name="Billing_address", value="{{ address.id }}" checked="checked" /> {{ address.get_address }}  
+
+					{% else %}
+					<label class="billing-label"><br/>
+					<input type="radio" name="Billing_address", value="{{ address.id }}"/> {{ address.get_address }} <br/>
+						 
+				{% endif %}
+			</label>	
+
+		{% endfor %}
+			
+	</div>
+	{% endif %}
+
+<div class="col-sm-6">
+	<h3>Credit card Info</h3>
+
+<div id="card_errors_div" class="alert alert-danger hidden payment-errors" role="alert">
+</div>
+	<div class="form-row">
+		<div class="row">
+		<div class="col-xs-6" style="padding-right: 0px;">
+			<b>Card number</b>
+			<input class="form-control" type="text" size="20" data-stripe="number"/>
+		</div>
+			<div class="col-xs-3">
+				<b>CVC</b>
+					<input class="form-control" type="text" size="4" data-stripe="cvc"/>
+			</div>
+		</div>
+	</div>
+</br>
+
+		<div class="form-row">
+			<b>Expiration (MM/YYYY)</b>
+		<div class="row">
+			<div class="col-xs-4" style="padding-right: 0px;">		
+			<input class="form-control" type="text" size="2" data-stripe="exp-month" placeholder="e.g 02"/>
+		</div>
+		<div class="col-xs-6">
+		<input class="form-control" type="text" size="4" data-stripe="exp-year" placeholder="e.g 2020"/>
+		</div>
+	</div>
+	</div>
+
+	</br>
+
+	<button class="btn btn-default btn-lg" type="Submit">Submit Payment</button>
+	
+</div>
+</form>
+</div>
+{% endblock %}

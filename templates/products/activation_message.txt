@@ -1,0 +1,12 @@
+Hi, {{ user }}
+
+Please activate your account here:
+
+{{ activation_url }}
+
+
+Thank You!
+
+Regards,
+Elsie collections,
+Your trusted clothing & Home Essentials partner.
