@@ -1,49 +1,103 @@
-    <!-- Static navbar -->
-    <nav class="navbar navbar-default navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="{% url 'home' %}">Elsie Collections</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <!-- <li><a href="#about">About</a></li> -->
-            
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">What's up?<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Hit us up</a></li>
-                <li><a href="#">Subscribe</a></li>
-                <li><a href="#">Check out offers & Promos</a></li>
-<!--                 <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li> -->
-              </ul>
-            </li>
-          </ul>
-          <form class="navbar-form navbar-left" role="search" action="/s/">
-            <div class="form-group">
-               <input type="text" class="form-control" name="q" placeholder="Search Item">
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-          </form>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="{% url 'items' %}">Products</a></li>
-            <li><a href="{% url 'cart' %}">Cart <span class="badge">{% if not request.session.total_items %} 0 {% else %}{{ request.session.total_items }}{% endif %}</span></a></li>
-            {% if user.is_authenticated %}
-              <li><a href="#">Account</a></li>
-              <li><a href="{% url 'auth_logout' %}">Logout</a></li>
-            {% else %}
-              <li><a href="{% url 'auth_login' %}">Login</a></li>
-            {% endif %}
-              <li><a href="#contact">Contact Us</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+
+			<!-- top-area Start -->
+			<div class="top-area">
+				<div class="header-area">
+					<!-- Start Navigation -->
+				    <nav class="navbar navbar-default bootsnav  navbar-sticky navbar-scrollspy"  data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
+
+				        <!-- Start Top Search -->
+				        <div class="top-search">
+				            <div class="container">
+				                <div class="input-group">
+				                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+				                    <input type="text" class="form-control" placeholder="Search">
+				                    <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+				                </div>
+				            </div>
+				        </div>
+				        <!-- End Top Search -->
+
+				        <div class="container">            
+				            <!-- Start Atribute Navigation -->
+				            <div class="attr-nav">
+				                <ul>
+				                	<li class="search">
+				                		<a href="#"><span class="lnr lnr-magnifier"></span></a>
+				                	</li><!--/.search-->
+				                	<li class="nav-setting">
+				                		<a href="#"><span class="lnr lnr-cog"></span></a>
+				                	</li><!--/.search-->
+				                    <li class="dropdown">
+				                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+				                            <span class="lnr lnr-cart"></span>
+											<span class="badge badge-bg-1">2</span>
+				                        </a>
+				                        <ul class="dropdown-menu cart-list s-cate">
+				                            <li class="single-cart-list">
+				                                <a href="#" class="photo"><img src="static/media/images/collection/arrivals1.png" class="cart-thumb" alt="image" /></a>
+				                                <div class="cart-list-txt">
+				                                	<h6><a href="#">arm <br> chair</a></h6>
+				                                	<p>1 x - <span class="price">$180.00</span></p>
+				                                </div><!--/.cart-list-txt-->
+				                                <div class="cart-close">
+				                                	<span class="lnr lnr-cross"></span>
+				                                </div><!--/.cart-close-->
+				                            </li><!--/.single-cart-list -->
+				                            <li class="single-cart-list">
+				                                <a href="#" class="photo"><img src="static/media/images/collection/arrivals2.png" class="cart-thumb" alt="image" /></a>
+				                                <div class="cart-list-txt">
+				                                	<h6><a href="#">single <br> armchair</a></h6>
+				                                	<p>1 x - <span class="price">$180.00</span></p>
+				                                </div><!--/.cart-list-txt-->
+				                                <div class="cart-close">
+				                                	<span class="lnr lnr-cross"></span>
+				                                </div><!--/.cart-close-->
+				                            </li><!--/.single-cart-list -->
+				                            <li class="single-cart-list">
+				                                <a href="#" class="photo"><img src="static/media/images/collection/arrivals3.png" class="cart-thumb" alt="image" /></a>
+				                                <div class="cart-list-txt">
+				                                	<h6><a href="#">wooden arn <br> chair</a></h6>
+				                                	<p>1 x - <span class="price">$180.00</span></p>
+				                                </div><!--/.cart-list-txt-->
+				                                <div class="cart-close">
+				                                	<span class="lnr lnr-cross"></span>
+				                                </div><!--/.cart-close-->
+				                            </li><!--/.single-cart-list -->
+				                            <li class="total">
+				                                <span>Total: $0.00</span>
+				                                <button class="btn-cart pull-right" onclick="window.location.href='#'">view cart</button>
+				                            </li>
+				                        </ul>
+				                    </li><!--/.dropdown-->
+				                </ul>
+				            </div><!--/.attr-nav-->
+				            <!-- End Atribute Navigation -->
+
+				            <!-- Start Header Navigation -->
+				            <div class="navbar-header">
+				                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+				                    <i class="fa fa-bars"></i>
+				                </button>
+				                <a class="navbar-brand" href="{% url 'home' %}">Elsie Collections.</a>
+
+				            </div><!--/.navbar-header-->
+				            <!-- End Header Navigation -->
+
+				            <!-- Collect the nav links, forms, and other content for toggling -->
+				            <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
+				                <ul class="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
+				                    <li class=" scroll active"><a href="#home">home</a></li>
+				                    <li class="scroll"><a href="#new-arrivals">new arrival</a></li>
+				                    <li class="scroll"><a href="#feature">features</a></li>
+				                    <li class="scroll"><a href="#blog">blog</a></li>
+				                    <li class="scroll"><a href="#newsletter">contact</a></li>
+				                </ul><!--/.nav -->
+				            </div><!-- /.navbar-collapse -->
+				        </div><!--/.container-->
+				    </nav><!--/nav-->
+				    <!-- End Navigation -->
+				</div><!--/.header-area-->
+			    <div class="clearfix"></div>
+
+			</div><!-- /.top-area-->
+			<!-- top-area End -->

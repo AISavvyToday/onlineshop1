@@ -50,7 +50,7 @@ class Item(models.Model):
 
 class ItemImage(models.Model):
 	item = models.ForeignKey(Item, on_delete=models.CASCADE)
-	image = models.ImageField(upload_to='products/images/')
+	image = models.ImageField(upload_to='C:/Users/hp/OneDrive/Desktop/DevProjects/esther/static/media/images/products/images/')
 	featured = models.BooleanField(default=False)
 	thumbnail = models.BooleanField(default=False)
 	active = models.BooleanField(default=True)

@@ -1,176 +1,312 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="en">
+
+    <head>
+        <!-- meta data -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+        <!--font-family-->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+        
+        <!-- title of site -->
+        <title>Elsie Collections</title>
+
+        <!-- For favicon png -->
+        <link rel="shortcut icon" type="image/icon" href="static/media/logo/favicon.png"/>
+       
+        <!--font-awesome.min.css-->
+        <link rel="stylesheet" href="static/static_files/css/font-awesome.min.css">
+
+        <!--linear icon css-->
+        <link rel="stylesheet" href="static/static_files/css/linearicons.css">
+
+    <!--animate.css-->
+        <link rel="stylesheet" href="static/static_files/css/animate.css">
+
+        <!--owl.carousel.css-->
+        <link rel="stylesheet" href="static/static_files/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="static/static_files/css/owl.theme.default.min.css">
+    
+        <!--bootstrap.min.css-->
+        <link rel="stylesheet" href="static/static_files/css/bootstrap.min.css">
+    
+    <!-- bootsnav -->
+        <link rel="stylesheet" href="static/static_files/css/bootsnav.css" >  
+        
+        <!--style.css-->
+        <link rel="stylesheet" href="static/static_files/css/style.css">
+        
+        <!--responsive.css-->
+        <link rel="stylesheet" href="static/static_files/css/responsive.css">
+        
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    
+        <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
 
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
-    <link rel="canonical" href="https://getbootstrap.com/docs/3.3/examples/navbar-static-top/">
-
-    <title>Elsie Collections</title>
+        <!-- Get bootsrap cdn
+         -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 
-    {% load static %}
 
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
-    <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}"/>
-
-    <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="https://getbootstrap.com/docs/3.3/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="https://getbootstrap.com/docs/3.3/examples/navbar-static-top/navbar-static-top.css" rel="stylesheet">
-
-    <style>
-
-      .alert-top-message {
-        margin-bottom: 0px;
-        border-radius: 0px;
-        text-align: center;
-        background-color: #ffaaab;
-      }
-      .alert-top-message h3{
-        margin: 0 auto;
-      }
-
-      .modal-dialog {
-        margin-top: 25%;
-      }
-
-{% block styles%}
-{% endblock %}
-      .background_img_thumb {
-        width:100px;
-        height:100px;
-        background-image:url("{% static 'img/placeholder.svg' %}");
-        background-size:cover;
-        background-repeat:no-repeat;
-        background-position: center;
-
-      }
-
-    </style>
-
-<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-
+        
+      
 </head>
 
 <body>
-  {% if marketing_message %}
-  <div class="alert alert-top-message alert-dismissible" role="alert">
-        <button id="marketing_message-btn" type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-    <div class="container">
-
-      <h1>{{marketing_message.message|safe}}</h1>
-    </div>
-  </div>
-  {% endif %}
-
 
 {% include 'navbar.html' %}
 
+{% block content %}
 
-  {% block jumbotron %}
-  {% endblock %}
+{% endblock %}
+
+    <!-- clients start -->
+    <section id="clients"  class="clients">
+      <div class="container">
+        <div class="owl-carousel owl-theme" id="client">
+            <div class="item">
+              <a href="#">
+                <img src="static/media/images/clients/c1.png" alt="brand-image" />
+              </a>
+            </div><!--/.item-->
+            <div class="item">
+              <a href="#">
+                <img src="static/media/images/clients/c2.png" alt="brand-image" />
+              </a>
+            </div><!--/.item-->
+            <div class="item">
+              <a href="#">
+                <img src="static/media/images/clients/c3.png" alt="brand-image" />
+              </a>
+            </div><!--/.item-->
+            <div class="item">
+              <a href="#">
+                <img src="static/media/images/clients/c4.png" alt="brand-image" />
+              </a>
+            </div><!--/.item-->
+            <div class="item">
+              <a href="#">
+                <img src="static/media/images/clients/c5.png" alt="brand-image" />
+              </a>
+            </div><!--/.item-->
+          </div><!--/.owl-carousel-->
+
+      </div><!--/.container-->
+
+    </section><!--/.clients-->  
+    <!-- clients end -->
 
 
-  <div class="container">
-    {% if messages %}
-      {% for message in messages %}
-    <div class='alert {% if "success" in message.tags %}alert-success{% elif "warning" in message.tags %}alert-warning {% elif "error" in message.tags %}alert-danger {% endif %} alert-dismissible' role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-          {% if "safe" in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}  
-    </div>
-      {% endfor %}
-    {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--newsletter start -->
+    <section id="newsletter"  class="newsletter">
+      <div class="container">
+        <div class="hm-footer-details">
+          <div class="row">
+            <div class=" col-md-3 col-sm-6 col-xs-12">
+              <div class="hm-footer-widget">
+                <div class="hm-foot-title">
+                  <h4>information</h4>
+                </div><!--/.hm-foot-title-->
+                <div class="hm-foot-menu">
+                  <ul>
+                    <li><a href="#">about us</a></li><!--/li-->
+                    <li><a href="#">contact us</a></li><!--/li-->
+                    <li><a href="#">news</a></li><!--/li-->
+                    <li><a href="#">store</a></li><!--/li-->
+                  </ul><!--/ul-->
+                </div><!--/.hm-foot-menu-->
+              </div><!--/.hm-footer-widget-->
+            </div><!--/.col-->
+            <div class=" col-md-3 col-sm-6 col-xs-12">
+              <div class="hm-footer-widget">
+                <div class="hm-foot-title">
+                  <h4>collections</h4>
+                </div><!--/.hm-foot-title-->
+                <div class="hm-foot-menu">
+                  <ul>
+                    <li><a href="#">wooden chair</a></li><!--/li-->
+                    <li><a href="#">royal cloth sofa</a></li><!--/li-->
+                    <li><a href="#">accent chair</a></li><!--/li-->
+                    <li><a href="#">bed</a></li><!--/li-->
+                    <li><a href="#">hanging lamp</a></li><!--/li-->
+                  </ul><!--/ul-->
+                </div><!--/.hm-foot-menu-->
+              </div><!--/.hm-footer-widget-->
+            </div><!--/.col-->
+            <div class=" col-md-3 col-sm-6 col-xs-12">
+              <div class="hm-footer-widget">
+                <div class="hm-foot-title">
+                  <h4>my accounts</h4>
+                </div><!--/.hm-foot-title-->
+                <div class="hm-foot-menu">
+                  <ul>
+                    <li><a href="#">my account</a></li><!--/li-->
+                    <li><a href="#">wishlist</a></li><!--/li-->
+                    <li><a href="#">Community</a></li><!--/li-->
+                    <li><a href="#">order history</a></li><!--/li-->
+                    <li><a href="#">my cart</a></li><!--/li-->
+                  </ul><!--/ul-->
+                </div><!--/.hm-foot-menu-->
+              </div><!--/.hm-footer-widget-->
+            </div><!--/.col-->
+            <div class=" col-md-3 col-sm-6  col-xs-12">
+              <div class="hm-footer-widget">
+                <div class="hm-foot-title">
+                  <h4>newsletter</h4>
+                </div><!--/.hm-foot-title-->
+                <div class="hm-foot-para">
+                  <p>
+                    Subscribe  to get latest news,update and information.
+                  </p>
+                </div><!--/.hm-foot-para-->
+                <div class="hm-foot-email">
+                  <div class="foot-email-box">
+                    <input type="text" class="form-control" placeholder="Enter Email Here....">
+                  </div><!--/.foot-email-box-->
+                  <div class="foot-email-subscribe">
+                    <span><i class="fa fa-location-arrow"></i></span>
+                  </div><!--/.foot-email-icon-->
+                </div><!--/.hm-foot-email-->
+              </div><!--/.hm-footer-widget-->
+            </div><!--/.col-->
+          </div><!--/.row-->
+        </div><!--/.hm-footer-details-->
+
+      </div><!--/.container-->
+
+    </section><!--/newsletter-->  
+    <!--newsletter end -->
+
+
+
+<!--footer start-->
+    <footer id="footer"  class="footer">
+      <div class="container">
+        <div class="hm-footer-copyright text-center">
+          <div class="footer-social">
+            <a href="#"><i class="fa fa-facebook"></i></a>  
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-pinterest"></i></a>
+            <a href="#"><i class="fa fa-behance"></i></a> 
+          </div>
+          <p>
+            &copy;copyright 2020. designed and developed by <a href="https://www.themesine.com/">TheJacksons .Inc</a>
+          </p><!--/p-->
+        </div><!--/.text-center-->
+      </div><!--/.container-->
+
+      <div id="scroll-Top">
+        <div class="return-to-top">
+          <i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title="" data-original-title="Back to Top" aria-hidden="true"></i>
+        </div>
+        
+      </div><!--/.scroll-Top-->
       
-  {% block content %}
-
-  {% endblock content %}
-</div>
-{% include 'modal.html' %}
+        </footer><!--/.footer-->
+    <!--footer end-->
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://getbootstrap.com/docs/3.3/assets/js/ie-emulation-modes-warning.js"></script>
 
 
-	<!-- Latest compiled and minified JavaScript -->
-  <!-- Latest compiled and minified JavaScript -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-
-  <script>
-        $(document).ready(function(){
-        $('#marketing_message-btn').click(function(){
-            $.ajax({
-              type: 'POST',
-              url: '{% url "dismiss-marketing-message" %}',
-              data: {
-                'dismiss-marketing': true,
-                'csrfmiddlewaretoken': '{{ csrf_token }}'
-              },
-              success: function(data){
-                
-              },
-              error: function(){
-                alert('Error! something went wrong, please try again later')
-              }
-            });
-        });
-
-        {% if not request.user.is_authenticated and not request.session.email_added_marketing and not 'accounts' in request.get_full_path %}
-        function showModal(){
-          $('#marketingModal').modal('show');
-          // setTimeout(showModal, 5000);
-        }
-        // showModal()
-        setTimeout(showModal, 2000);
-            $('#sendMarketingForm').click(function(e){
-              e.preventDefault()
-              var mForm = $('#sendForm').serialize()
-            $.ajax({
-              type: 'POST',
-              url: '{% url "ajax_email_signup" %}',
-              data: mForm,
-              success: function(data){
-                $('#modalMessage').html('<p>' + data + '</p>')
-                $('#marketingModal').modal('hide');
-              },
-              error: function(data){
-                var obj = data.responseJSON
-                $('#modalMessage').html('<p style="color:red;">' + obj.email + '</p>')
 
 
-              },
-            });
-        });
-        {% endif %}
-    });
 
-  </script>
 
-  <script>
-    $(document).ready(function(){
-        {% block jquery %}{% endblock%}
-    });
-  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+            <!-- Include all js compiled plugins (below), or include individual files as needed -->
+
+            <script src="static/static_files/js/jquery.js"></script>
+
+            <!--modernizr.min.js-->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+            <!--bootstrap.min.js-->
+            <script src="static/static_files/js/bootstrap.min.js"></script>
+
+            <!-- bootsnav js -->
+            <script src="static/static_files/js/bootsnav.js"></script>
+
+            <!--owl.carousel.js-->
+            <script src="static/static_files/js/owl.carousel.min.js"></script>
+
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+            
+            <script src="static/static_files/js/custom.js"></script>
+
+
+
+            <!-- Get bootstrap cdn -->
+
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+
+
+
+            <!-- javascript for stripe payments -->
+
+            <script type="text/javascript" src="https://js.stripe.com/v2/"></script> 
+            <!--Custom JS-->
+            
+
+
+
+
+
+
+
+
+
+
+
 
   </body>
 </html>

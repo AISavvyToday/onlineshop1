@@ -1,0 +1,127 @@
+
+
+
+
+
+
+<style>
+
+          .alert-top-message {
+            margin-bottom: 0px;
+            border-radius: 0px;
+            text-align: center;
+            background-color: #ffaaab;
+          }
+          .alert-top-message h3{
+            margin: 0 auto;
+          }
+
+          .modal-dialog {
+            margin-top: 25%;
+          }
+
+    {% block styles%}
+    {% endblock %}
+          .background_img_thumb {
+            width:100px;
+            height:100px;
+            background-image:url("{% static 'img/placeholder.svg' %}");
+            background-size:cover;
+            background-repeat:no-repeat;
+            background-position: center;
+
+          }
+
+        </style>
+
+
+<!--   {% if marketing_message %}
+  <div class="alert alert-top-message alert-dismissible" role="alert">
+        <button id="marketing_message-btn" type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    <div class="container">
+
+      <h1>{{marketing_message.message|safe}}</h1>
+    </div>
+  </div>
+  {% endif %} -->
+
+
+
+
+
+
+<!-- <div class="container">
+    {% if messages %}
+      {% for message in messages %}
+        <div class='alert {% if "success" in message.tags %}alert-success{% elif "warning" in message.tags %}alert-warning {% elif "error" in message.tags %}alert-danger {% endif %} alert-dismissible' role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+          {% if "safe" in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}  
+    </div>
+      {% endfor %}
+    {% endif %}
+      
+</div> -->
+
+<!-- {% include 'modal.html' %} -->
+
+
+
+<!--   <script>
+        $(document).ready(function(){
+        $('#marketing_message-btn').click(function(){
+            $.ajax({
+              type: 'POST',
+              url: '{% url "dismiss-marketing-message" %}',
+              data: {
+                'dismiss-marketing': true,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+              },
+              success: function(data){
+                
+              },
+              error: function(){
+                alert('Error! something went wrong, please try again later')
+              }
+            });
+        });
+
+        {% if not request.user.is_authenticated and not request.session.email_added_marketing and not 'accounts' in request.get_full_path %}
+        function showModal(){
+          $('#marketingModal').modal('show');
+          // setTimeout(showModal, 5000);
+        }
+        // showModal()
+        setTimeout(showModal, 2000);
+            $('#sendMarketingForm').click(function(e){
+              e.preventDefault()
+              var mForm = $('#sendForm').serialize()
+            $.ajax({
+              type: 'POST',
+              url: '{% url "ajax_email_signup" %}',
+              data: mForm,
+              success: function(data){
+                $('#modalMessage').html('<p>' + data + '</p>')
+                $('#marketingModal').modal('hide');
+              },
+              error: function(data){
+                var obj = data.responseJSON
+                $('#modalMessage').html('<p style="color:red;">' + obj.email + '</p>')
+
+
+              },
+            });
+        });
+        {% endif %}
+    });
+
+  </script>
+
+  <script>
+    $(document).ready(function(){
+        {% block jquery %}{% endblock%}
+    });
+  </script> -->

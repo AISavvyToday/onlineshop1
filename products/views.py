@@ -27,6 +27,7 @@ def home(request):
 	sliders = Slider.objects.all_featured()
 	items = Item.objects.all()
 	marketing_message = MarketingMessage.objects.all()[0]
+	
 	context={'items': items,
 			'marketing_message':marketing_message,
 			'sliders': sliders
