@@ -52,11 +52,14 @@ class MarketingMessage(models.Model):
 
 
 def slider_upload(instance, filename):
-	return 'images/marketing/slider/%s' %(filename)
+	return 'sliders/%s' %(filename)
 
 
 
 class Slider(models.Model):
+	title = models.CharField(max_length=250, null=True,blank=True)
+	price = models.DecimalField(max_digits=100, decimal_places=2,null=True,blank=True) #if slider is an item
+	sale_price = models.DecimalField(max_digits=100, decimal_places=2,null=True,blank=True) # if slider is an item & has offer
 	image = models.ImageField(upload_to=slider_upload)
 	url_link = models.CharField(max_length=250, null=True,blank=True)
 	order = models.IntegerField(default=0)

@@ -170,9 +170,10 @@ STATICFILES_DIRS= ( os.path.join(BASE_DIR, 'static'),
     )
 
 
-MEDIA_URL = 'C:/Users/hp/OneDrive/Desktop/DevProjects/esther/static/media/images/'
-MEDIA_ROOT =  os.path.join(BASE_DIR, 'static', 'media', 'images')
-MEDIA_DIRS= ( os.path.join(BASE_DIR, 'static'),
+# MEDIA_URL = 'C:/Users/hp/OneDrive/Desktop/DevProjects/esther/static/media/images/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'static', 'media')
+MEDIA_DIRS= ( os.path.join(BASE_DIR, 'media'),
     )
 
 

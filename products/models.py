@@ -2,6 +2,14 @@ from django.urls import reverse
 from django.db import models
 from django.db.models.signals import post_save  
 
+
+
+
+
+def item_image_upload(instance, filename):
+	return 'products/%s' %(filename)
+
+
 # Create your models here.
 
 class Category(models.Model):
@@ -16,6 +24,54 @@ class Category(models.Model):
 
 	def __str__(self):
 		return self.title
+
+class PopularProducts(models.Model):
+	title = models.CharField(max_length=100)
+	image = models.ImageField(upload_to=item_image_upload,null=True, blank=True)
+	description = models.TextField(null=True, blank=True)
+	category = models.ManyToManyField(Category,null=True, blank=True)
+	price = models.DecimalField(max_digits=100, decimal_places=2, default=0.00)
+	sale_price = models.FloatField(null=True, blank=True)
+	slug = models.SlugField(unique=True)
+	created = models.DateTimeField(auto_now_add=True, auto_now=False)
+	updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+	active = models.BooleanField(default=True)
+	update_defaults = models.BooleanField(default=False)
+
+
+	def __str__(self):
+		return self.title
+
+	class Meta:
+		unique_together = ('title', 'slug')
+
+	def get_absolute_url(self):
+		return reverse('single-item', kwargs={'slug': self.slug })
+
+
+
+class NewArrivals(models.Model):
+	title = models.CharField(max_length=100)
+	image = models.ImageField(upload_to=item_image_upload,null=True, blank=True)
+	description = models.TextField(null=True, blank=True)
+	category = models.ManyToManyField(Category,null=True, blank=True)
+	price = models.DecimalField(max_digits=100, decimal_places=2, default=0.00)
+	sale_price = models.FloatField(null=True, blank=True)
+	slug = models.SlugField(unique=True)
+	created = models.DateTimeField(auto_now_add=True, auto_now=False)
+	updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+	active = models.BooleanField(default=True)
+	update_defaults = models.BooleanField(default=False)
+
+	def __str__(self):
+		return self.title
+	class Meta:
+		unique_together = ('title', 'slug')
+	def get_absolute_url(self):
+		return reverse('single-item', kwargs={'slug': self.slug })
+
+
+
 
 
 	
@@ -50,7 +106,7 @@ class Item(models.Model):
 
 class ItemImage(models.Model):
 	item = models.ForeignKey(Item, on_delete=models.CASCADE)
-	image = models.ImageField(upload_to='C:/Users/hp/OneDrive/Desktop/DevProjects/esther/static/media/images/products/images/')
+	image = models.ImageField(upload_to=item_image_upload)
 	featured = models.BooleanField(default=False)
 	thumbnail = models.BooleanField(default=False)
 	active = models.BooleanField(default=True)

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from . models import Item, ItemImage
+from . models import Item, ItemImage, PopularProducts, NewArrivals
 from django.http import Http404
 from marketing.models import MarketingMessage, Slider
 # Create your views here.
@@ -26,9 +26,13 @@ def search(request):
 def home(request):
 	sliders = Slider.objects.all_featured()
 	items = Item.objects.all()
+	populars = PopularProducts.objects.all()
+	arrivals = NewArrivals.objects.all()
 	marketing_message = MarketingMessage.objects.all()[0]
 	
 	context={'items': items,
+			'populars': populars,
+			'arrivals': arrivals,
 			'marketing_message':marketing_message,
 			'sliders': sliders
 			}
