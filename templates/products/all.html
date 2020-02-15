@@ -6,19 +6,8 @@
 
 {% endblock %}
 
-{% block styles %}
-
- .jumbotron{
-
- /*color: red;*/
-}
-
-{% endblock %}
-
-
-
 {% block content %}
-<div class="row">
+<!-- <div class="row">
   
 	
     {% for item in items %}
@@ -28,9 +17,9 @@
                   <div class='col-sm-2'>  
                       {% if item.featured %}
                       <div style="width:150px;height:150px;/*background-color: red;*/background-image:url('{{ MEDIA_URL }}{{ item.image.url }}');background-repeat: no-repeat; background-size: cover; background-position: center; margin: 0 auto;">
-                      </div>
+                      </div> -->
                       <!-- <img class="img-responsive" src="{{ MEDIA_URL }}{{ item.image.url }}"/> -->
-                      {% endif %}
+<!--                       {% endif %}
                   {% endfor %}
             {% else %}
             <img class="img-responsive" src="{% static 'img/placeholder.svg' %}"/>
@@ -45,7 +34,251 @@
   </div>
     {% cycle "" "" "" "" "" "</div><br/><hr/><div class='row'>" %}
 
-    {% endfor %}
+    {% endfor %} -->
   
-</div>
+<!-- </div> -->
+
+
+
+
+            <!--new-arrivals start -->
+    <section id="new-arrivals" class="new-arrivals">
+
+                <div class="container">
+            <div class="section-header">
+              <!-- <h2>new arrivals</h2>-->        
+            </div><!--/.section-header-->
+          <div class="new-arrivals-content">
+            <div class="row">
+              {% for item in items %}
+              <div class="col-md-3 col-sm-4">
+                  {% if item.itemimage_set %}
+                  {% for item in item.itemimage_set.all %}
+                  <div class="single-new-arrival">
+                    <div class="single-new-arrival-bg">
+                      <img src="{{ MEDIA_URL }}{{ item.image.url }}" alt="new-arrivals images">
+                      <div class="single-new-arrival-bg-overlay"></div>
+                      <div class="sale bg-1">
+                        <p>sale</p>
+                      </div>
+                      <div class="new-arrival-cart">
+                        <p>
+                          <span class="lnr lnr-cart"></span>
+                          <a href="#">add <span>to </span> cart</a>
+                        </p>
+                        <p class="arrival-review pull-right">
+                          <span class="lnr lnr-heart"></span>
+                          <span class="lnr lnr-frame-expand"></span>
+                        </p>
+                      </div>
+                    </div>
+                    <h4><a href="#">{{ item.title }}</a></h4>
+                    
+                    <p class="arrival-product-price">Now @ ${{ item.sale_price }}</p>
+                    <p class="arrival-product-price">Was <del>${{ item.price }}</del></p>
+                    <p>{{ item.description|safe }}</p>
+                  </div>
+                  {% endfor %}
+                {% else %}
+                  <div class="single-new-arrival">
+                    <div class="single-new-arrival-bg">
+                      <img src="static/media/products/images/default.jpg" alt="new-arrivals images">
+                      <div class="single-new-arrival-bg-overlay"></div>
+                      <div class="sale bg-1">
+                        <p>sale</p>
+                      </div>
+                      <div class="new-arrival-cart">
+                        <p>
+                          <span class="lnr lnr-cart"></span>
+                          <a href="#">add <span>to </span> cart</a>
+                        </p>
+                        <p class="arrival-review pull-right">
+                          <span class="lnr lnr-heart"></span>
+                          <span class="lnr lnr-frame-expand"></span>
+                        </p>
+                      </div>
+                    </div>
+                    <h4><a href="#">{{ item.title }}</a></h4>
+                    <p class="arrival-product-price">Now @ ${{ item.sale_price }}</p>
+                    <p class="arrival-product-price">Was<del>${{ item.price }}</del></p>
+                    <p>{{ item.description|safe }}</p>
+                  </div>
+                {% endif %}
+              </div>
+              {% endfor %}
+              
+            </div>
+          </div>
+        </div><!--/.container-->
+
+
+
+        <div class="container">
+            <div class="section-header">
+              <!-- <h2>new arrivals</h2>-->        
+            </div><!--/.section-header-->
+          <div class="new-arrivals-content">
+            <div class="row">
+              {% for arrival in arrivals %}
+              <div class="col-md-3 col-sm-4">
+                {% if arrival.image %}
+                  <div class="single-new-arrival">
+                    <div class="single-new-arrival-bg">
+                      <img src="{{ MEDIA_URL }}{{ arrival.image.url }}" alt="new-arrivals images">
+                      <div class="single-new-arrival-bg-overlay"></div>
+                      <div class="sale bg-1">
+                        <p>sale</p>
+                      </div>
+                      <div class="new-arrival-cart">
+                        <p>
+                          <span class="lnr lnr-cart"></span>
+                          <a href="#">add <span>to </span> cart</a>
+                        </p>
+                        <p class="arrival-review pull-right">
+                          <span class="lnr lnr-heart"></span>
+                          <span class="lnr lnr-frame-expand"></span>
+                        </p>
+                      </div>
+                    </div>
+                    <h4><a href="#">{{ arrival.title }}</a></h4>
+                    
+                    <p class="arrival-product-price">Now @ ${{ arrival.sale_price }}</p>
+                    <p class="arrival-product-price">Was <del>${{ arrival.price }}</del></p>
+                    <p>{{ arrival.description|safe }}</p>
+                  </div>
+                {% else %}
+                  <div class="single-new-arrival">
+                    <div class="single-new-arrival-bg">
+                      <img src="static/media/products/images/default.jpg" alt="new-arrivals images">
+                      <div class="single-new-arrival-bg-overlay"></div>
+                      <div class="sale bg-1">
+                        <p>sale</p>
+                      </div>
+                      <div class="new-arrival-cart">
+                        <p>
+                          <span class="lnr lnr-cart"></span>
+                          <a href="#">add <span>to </span> cart</a>
+                        </p>
+                        <p class="arrival-review pull-right">
+                          <span class="lnr lnr-heart"></span>
+                          <span class="lnr lnr-frame-expand"></span>
+                        </p>
+                      </div>
+                    </div>
+                    <h4><a href="#">{{ arrival.title }}</a></h4>
+                    <p class="arrival-product-price">Now @ ${{ arrival.sale_price }}</p>
+                    <p class="arrival-product-price">Was<del>${{ arrival.price }}</del></p>
+                    <p>{{ arrival.description|safe }}</p>
+                  </div>
+                {% endif %}
+              </div>
+              {% endfor %}
+              
+            </div>
+          </div>
+        </div><!--/.container-->
+
+
+
+
+        <div class="container">
+            <div class="section-header">
+              <!-- <h2>new arrivals</h2>-->        
+            </div><!--/.section-header-->
+          <div class="new-arrivals-content">
+            <div class="row">
+              {% for popular in populars %}
+              <div class="col-md-3 col-sm-4">
+                {% if popular.image %}
+                  <div class="single-new-arrival">
+                    <div class="single-new-arrival-bg">
+                      <img src="{{ MEDIA_URL }}{{ popular.image.url }}" alt="new-arrivals images">
+                      <div class="single-new-arrival-bg-overlay"></div>
+                      <div class="sale bg-1">
+                        <p>sale</p>
+                      </div>
+                      <div class="new-arrival-cart">
+                        <p>
+                          <span class="lnr lnr-cart"></span>
+                          <a href="#">add <span>to </span> cart</a>
+                        </p>
+                        <p class="arrival-review pull-right">
+                          <span class="lnr lnr-heart"></span>
+                          <span class="lnr lnr-frame-expand"></span>
+                        </p>
+                      </div>
+                    </div>
+                    <h4><a href="#">{{ popular.title|safe }}</a></h4>
+                    
+                    <p class="arrival-product-price">Now @ ${{ popular.sale_price }}</p>
+                    <p class="arrival-product-price">Was <del>${{ popular.price }}</del></p>
+                    <p>{{ popular.description|safe }}</p>
+                  </div>
+                {% else %}
+                  <div class="single-new-arrival">
+                    <div class="single-new-arrival-bg">
+                      <img src="static/media/products/images/default.jpg" alt="new-arrivals images">
+                      <div class="single-new-arrival-bg-overlay"></div>
+                      <div class="sale bg-1">
+                        <p>sale</p>
+                      </div>
+                      <div class="new-arrival-cart">
+                        <p>
+                          <span class="lnr lnr-cart"></span>
+                          <a href="#">add <span>to </span> cart</a>
+                        </p>
+                        <p class="arrival-review pull-right">
+                          <span class="lnr lnr-heart"></span>
+                          <span class="lnr lnr-frame-expand"></span>
+                        </p>
+                      </div>
+                    </div>
+                    <h4><a href="#">{{ popular.title|safe }}</a></h4>
+                    <p class="arrival-product-price">Now @ ${{ popular.sale_price }}</p>
+                    <p class="arrival-product-price">Was<del>${{ popular.price }}</del></p>
+                    <p>{{ popular.description|safe }}</p>
+                  </div>
+                {% endif %}
+              </div>
+              {% endfor %}
+              
+            </div>
+          </div>
+        </div><!--/.container-->
+
+
+
+
+    
+    </section><!--/.new-arrivals-->
+    <!--new-arrivals end -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {% endblock %}

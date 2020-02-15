@@ -41,8 +41,14 @@ def home(request):
 
 
 def all(request):
+	populars = PopularProducts.objects.all()
+	arrivals = NewArrivals.objects.all()
 	items = Item.objects.all()
-	context={'items': items }
+	context={'items': items,
+			'populars': populars,
+			'arrivals': arrivals
+
+			}
 
 	return render(request, 'all.html', context)
 
