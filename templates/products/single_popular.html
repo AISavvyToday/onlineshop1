@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 
-<div class="page-header">	
-	<h1>{{ item.title }}</h1>
-</div>
 {% block content %}
 
+
+
+{% if popular %}
+<div class="page-header">	
+	<h1>{{ popular.title }}</h1>
+</div>
 <div class="row">
 			<div class="col-sm-4">     
-		     {% for image in images %}
 
 		        {% if image.featured %}
 		        <div class="col-xs-12">
@@ -15,23 +17,10 @@
 		        <hr/>
 		        </div>
 		        {% endif %}
-		     {% endfor %}
-
-		     {% for image in images %}
-
-		       {% if not image.featured %}
-		    <div class="col-xs-6">
-		    	<a href="" class="thumbnail"></a>
-		    	<img class="img-responsive" src="{{ MEDIA_URL }}{{ image.image.url }}">
-		    </div>
-		    {% endif %}
-		    {% endfor %}
 		  </div>
 		  <div class="col-sm-8">
 		    <div class="col-sm-8 pull-left">
-            	<h1>{{ item.title }}
-             		
-            	</h1>
+            	<h1>{{ popular.title }}</h1>             		           	
         	</div>
         		<div class="col-sm-4 pull-right">
 	             	<form class="form pull-right" method="POST" action="{% url 'add-to-cart' item.slug %}">
@@ -39,20 +28,20 @@
 	             		<input class="btn btn-default btn-block" type="submit" value="Add to Cart"/>
 	             		<input class="form-control" type="number" name="Qty" value="1"/>
 	             
-	             	{% if item.variation_set.all %}
+	             	{% if popular.variation_set.all %}
 
-	             		{% if item.variation_set.sizes %}
+	             		{% if popular.variation_set.sizes %}
 		             		<select class="form-control" name="size">
-		             			{% for item in item.variation_set.sizes %}
-		             				<option value="{{ item.title|lower }}">{{ item.title|capfirst }}</option>
+		             			{% for v in popular.variation_set.sizes %}
+		             				<option value="{{ item.title|lower }}">{{ v.title|capfirst }}</option>
 		             			{% endfor %}
 		             		</select>
 	             		{% endif %}
 
-		             	{% if item.variation_set.colors %}
+		             	{% if popular.variation_set.colors %}
 		             		<select class="form-control" name="color">
-		             			{% for item in item.variation_set.colors %}
-		             				<option value="{{ item.title|lower }}">{{ item.title|capfirst }}</option>
+		             			{% for v in popular.variation_set.colors %}
+		             				<option value="{{ item.title|lower }}">{{ v.title|capfirst }}</option>
 		             			{% endfor %}	
 		             		</select>
 	             		{% endif %}
@@ -62,14 +51,18 @@
              	</div>
              <div class="col-sm-12"></div>
 	             <hr/>
-	             Price: ${{ item.price }}<br/>
+	             Price: ${{ popular.price }}<br/>
 	             Shipping: Free with purchase above $100
 	             <hr/>
              </div>
 	             <div class="col-sm-12">
-	             	{{ item.description|linebreaks }}
+	             	{{ popular.description|linebreaks }}
 	             </div>
 
 		    </div>	
 </div>
+{% endif %}
+
+
+
 {% endblock %}

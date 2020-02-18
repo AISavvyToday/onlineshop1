@@ -46,7 +46,7 @@ class PopularProducts(models.Model):
 		unique_together = ('title', 'slug')
 
 	def get_absolute_url(self):
-		return reverse('single-item', kwargs={'slug': self.slug })
+		return reverse('single-popular', kwargs={'slug': self.slug })
 
 
 
@@ -68,7 +68,7 @@ class NewArrivals(models.Model):
 	class Meta:
 		unique_together = ('title', 'slug')
 	def get_absolute_url(self):
-		return reverse('single-item', kwargs={'slug': self.slug })
+		return reverse('single-arrival', kwargs={'slug': self.slug })
 
 
 

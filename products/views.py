@@ -6,7 +6,7 @@ from marketing.models import MarketingMessage, Slider
 
 
 
-def search(request):
+def Search(request):
 	try:
 	    q = request.GET.get('q')
 	except:
@@ -40,7 +40,7 @@ def home(request):
 
 
 
-def all(request):
+def All(request):
 	populars = PopularProducts.objects.all()
 	arrivals = NewArrivals.objects.all()
 	items = Item.objects.all()
@@ -53,13 +53,17 @@ def all(request):
 	return render(request, 'all.html', context)
 
 
-def single(request, slug):
+def ViewSingle(request, slug):
 	try:
+
 		item = Item.objects.get(slug=slug)
 		# images = item.itemimage_set.all()
 		images = ItemImage.objects.filter(item=item)
-		context={'item': item, 'images': images }
-
-		return render(request, 'single.html', context)
+		context_feat ={
+				'item': item,
+				'images': images,
+				}
 	except:
 		raise Http404
+
+	return render(request, 'single_featured.html', context_feat)

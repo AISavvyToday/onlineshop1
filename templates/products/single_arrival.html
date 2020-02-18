@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+{% if arrival %}
+<div class="page-header">	
+	<h1>{{ arrival.title }}</h1>
+</div>
+<div class="row">
+			<div class="col-sm-4">     
+
+		        {% if image.featured %}
+		        <div class="col-xs-12">
+		        <img class="img-responsive" src="{{ MEDIA_URL }}{{ image.image.url }}"/>
+		        <hr/>
+		        </div>
+		        {% endif %}
+		  </div>
+		  <div class="col-sm-8">
+		    <div class="col-sm-8 pull-left">
+            	<h1>{{ arrival.title }}</h1>             		           	
+        	</div>
+        		<div class="col-sm-4 pull-right">
+	             	<form class="form pull-right" method="POST" action="{% url 'add-to-cart' item.slug %}">
+	             		{% csrf_token %}
+	             		<input class="btn btn-default btn-block" type="submit" value="Add to Cart"/>
+	             		<input class="form-control" type="number" name="Qty" value="1"/>
+	             
+	             	{% if arrival.variation_set.all %}
+
+	             		{% if arrival.variation_set.sizes %}
+		             		<select class="form-control" name="size">
+		             			{% for v in arrival.variation_set.sizes %}
+		             				<option value="{{ item.title|lower }}">{{ v.title|capfirst }}</option>
+		             			{% endfor %}
+		             		</select>
+	             		{% endif %}
+
+		             	{% if arrival.variation_set.colors %}
+		             		<select class="form-control" name="color">
+		             			{% for v in arrival.variation_set.colors %}
+		             				<option value="{{ item.title|lower }}">{{ v.title|capfirst }}</option>
+		             			{% endfor %}	
+		             		</select>
+	             		{% endif %}
+
+	             	{% endif %}   		
+	             	</form>
+             	</div>
+             <div class="col-sm-12"></div>
+	             <hr/>
+	             Price: ${{ arrival.price }}<br/>
+	             Shipping: Free with purchase above $100
+	             <hr/>
+             </div>
+	             <div class="col-sm-12">
+	             	{{ arrival.description|linebreaks }}
+	             </div>
+
+		    </div>	
+</div>
+{% endif %}
+
+
+
+{% endblock %}
